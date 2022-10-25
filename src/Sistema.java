@@ -20,7 +20,12 @@ public class Sistema implements FuncionalidadesIF {
     }
 
     @Override
-    public boolean ehRetanuglo(double lado1, double lado2, double lado3, double lado4) {
+    public String classificaTriangulo(double angulo1, double angulo2, double angulo3) {
+        return null;
+    }
+
+    @Override
+    public boolean ehRetangulo(double lado1, double lado2, double lado3, double lado4) {
         return false;
     }
 
