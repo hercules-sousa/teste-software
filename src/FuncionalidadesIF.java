@@ -3,7 +3,8 @@ public interface FuncionalidadesIF {
     public Raizes calculaFuncaoSegundoGrau(double a, double b, double c);
     public boolean ehTriangulo(double angulo1, double angulo2, double angulo3);
     public boolean ehTrianguloRetangulo(double lado1, double lado2, double lado3);
-    public boolean ehRetanuglo(double lado1, double lado2, double lado3, double lado4);
+    public String classificaTriangulo(double angulo1, double angulo2, double angulo3);
+    public boolean ehRetangulo(double lado1, double lado2, double lado3, double lado4);
     public double perimetroRetangulo(double lado1, double lado2, double lado3, double lado4);
     public double areaRetangulo(double lado1, double lado2, double lado3, double lado4);
     public double calculadora(String expressao);

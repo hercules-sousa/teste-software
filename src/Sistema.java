@@ -41,11 +41,26 @@ public class Sistema implements FuncionalidadesIF {
 
     @Override
     public boolean ehTrianguloRetangulo(double lado1, double lado2, double lado3) {
-        return false;
+        return (lado1 * lado1 + lado2 * lado2 == lado3 * lado3)
+                || (lado3 * lado3 + lado2 * lado2 == lado1 * lado1)
+                || (lado1 * lado1 + lado3 * lado3 == lado2 * lado2);
     }
 
     @Override
-    public boolean ehRetanuglo(double lado1, double lado2, double lado3, double lado4) {
+    public String classificaTriangulo(double angulo1, double angulo2, double angulo3) {
+        // Adicionar condição para verificar se é triângulo
+        if (angulo1 == 90 || angulo2 == 90 || angulo3 == 90)
+            return "Triângulo retângulo";
+        else if (angulo1 < 90 && angulo2 < 90 && angulo3 < 90)
+            return "Triângulo acutângulo";
+        else if (angulo1 > 90 || angulo2 > 90 || angulo3 > 90)
+            return "Triângulo obtusângulo";
+
+        return "Sem resultado";
+    }
+
+    @Override
+    public boolean ehRetangulo(double lado1, double lado2, double lado3, double lado4) {
         return false;
     }
 
