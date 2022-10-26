@@ -61,7 +61,9 @@ public class Sistema implements FuncionalidadesIF {
 
     @Override
     public boolean ehRetangulo(double lado1, double lado2, double lado3, double lado4) {
-        return false;
+        return (lado1 == lado2 && lado3 == lado4)
+                || (lado1 == lado3 && lado2 == lado4)
+                || (lado1 == lado4 && lado2 == lado3);
     }
 
     @Override
