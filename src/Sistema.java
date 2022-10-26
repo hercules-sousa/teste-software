@@ -1,7 +1,32 @@
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+
 public class Sistema implements FuncionalidadesIF {
+    private ArrayList<Usuario> usuarios = new ArrayList<>();
+
+    public boolean validarEmail(String email) {
+        String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        return Pattern.compile(regexPattern).matcher(email).matches();
+    }
+
     @Override
     public Usuario cadastraUsuario(String nome, String email, String senha) {
+        if (validarEmail(email)) {
+            System.out.println("Email válido");
+        }
+        else {
+            System.out.println("Email inválido");
+        }
         return null;
+    }
+
+    public ArrayList<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(ArrayList<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 
     @Override
