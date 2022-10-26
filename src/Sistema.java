@@ -10,6 +10,11 @@ public class Sistema implements FuncionalidadesIF {
         return Pattern.compile(regexPattern).matcher(email).matches();
     }
 
+    public boolean validarSenha(String senha) {
+        String regexPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=(.*\\d){2,})(?=.*[@$!%*?&#])[A-Za-z\\d@$!%*?&#]{8,}$";
+        return Pattern.compile(regexPattern).matcher(senha).matches();
+    }
+
     @Override
     public Usuario cadastraUsuario(String nome, String email, String senha) {
         if (validarEmail(email)) {
@@ -18,6 +23,9 @@ public class Sistema implements FuncionalidadesIF {
         else {
             System.out.println("Email inválido");
         }
+
+        System.out.println(validarSenha(senha) ? "Senha válida" : "Senha inválida");
+
         return null;
     }
 

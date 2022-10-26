@@ -7,6 +7,6 @@ public class MainApplication {
         System.out.println(sistema.ehRetangulo(1, 1, 2, 2));
         System.out.println(sistema.ehRetangulo(1, 2, 3, 4));
 
-        sistema.cadastraUsuario("Hércules", "username@domain.com", "123");
+        sistema.cadastraUsuario("Hércules", "username@domain.com", "$0Password0");
     }
 }
