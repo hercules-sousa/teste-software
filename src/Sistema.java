@@ -69,34 +69,80 @@ public class Sistema implements FuncionalidadesIF {
 
     @Override
     public boolean ehRetangulo(double lado1, double lado2, double lado3, double lado4) {
-        return (lado1 == lado2 && lado3 == lado4)
-                || (lado1 == lado3 && lado2 == lado4)
-                || (lado1 == lado4 && lado2 == lado3);
+        //Validações para valores <= 0
+        return (lado1 == lado2 && lado3 == lado4 && lado1 != lado3)
+                || (lado1 == lado3 && lado2 == lado4 && lado1 != lado2)
+                || (lado1 == lado4 && lado2 == lado3 && lado1 != lado2);
     }
 
     @Override
     public double perimetroRetangulo(double lado1, double lado2, double lado3, double lado4) {
-        return 0;
+        if(ehRetangulo(lado1, lado2, lado3, lado4)) {
+            return lado1 + lado2 + lado3 + lado4;
+        }
+        return -1;
     }
 
     @Override
     public double areaRetangulo(double lado1, double lado2, double lado3, double lado4) {
-        return 0;
+        double area = -1;
+        if(ehRetangulo(lado1, lado2, lado3, lado4)){
+            if(lado1 != lado2){
+                area = lado1*lado2;
+            }
+            else if(lado1 != lado3) {
+                area = lado1*lado3;
+            }
+        }
+        return Double.parseDouble(String.format("%.2f", area).replace(",", "."));
     }
 
     @Override
     public double calculadora(String expressao) {
-        return 0;
+        String[] operacao = expressao.trim().split("\\s+");
+        double resultado = -1;
+        if(operacao.length == 3) {
+            double num1 = Double.parseDouble(operacao[0]);
+            double num2 = Double.parseDouble(operacao[2]);
+            switch (operacao[1]) {
+                case "+":
+                    resultado = num1 + num2;
+                    break;
+                case "-":
+                    resultado = num1 - num2;
+                    break;
+                case "*":
+                    resultado = num1 * num2;
+                    break;
+                case "/":
+                    if(num2 != 0){
+                        resultado = num1 / num2;
+                    }
+                    break;
+                case "^":
+                    resultado = Math.pow(num1, num2);
+                    break;
+            }
+        }
+        return Double.parseDouble(String.format("%.2f", resultado).replace(",", "."));
     }
 
     @Override
     public double areaCirculo(double raio) {
-        return 0;
+        double area = -1;
+        if( raio > 0 ){
+            area = Math.PI * (raio*raio);
+        }
+        return Double.parseDouble(String.format("%.2f", area).replace(",", "."));
     }
 
     @Override
     public double areaPerimetro(double raio) {
-        return 0;
+        double perimetro = -1;
+        if(raio > 0){
+            perimetro = 2 * Math.PI * raio;
+        }
+        return  Double.parseDouble(String.format("%.2f", perimetro).replace(",", "."));
     }
 
     @Override

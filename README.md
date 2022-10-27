@@ -22,6 +22,7 @@
     - [ ]  Multiplicação de dois valores
     - [ ]  Divisão de dois valores
     - [ ]  Potência
+- [ ] O sistema deve calcular a área e o perímetro de um círculo, a partir de um valor que represente um raio.
 
 # Requisitos não funcionais
 
