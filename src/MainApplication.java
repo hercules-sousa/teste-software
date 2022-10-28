@@ -5,11 +5,16 @@ public class MainApplication {
         Sistema sistema = new Sistema();
 
         System.out.println(sistema.classificaTriangulo(60, 60, 60));
+
         System.out.println(sistema.ehTrianguloRetangulo(5, 4, 3));
+
         System.out.println(sistema.ehRetangulo(1, 1, 2, 2));
         System.out.println(sistema.ehRetangulo(1, 2, 3, 4));
         System.out.println(sistema.ehRetangulo(4, 4, 4, 4));
+        System.out.println(sistema.ehRetangulo(-1, 4, -1, 4));
+
         System.out.println(sistema.perimetroRetangulo(2.5, 3, 3, 2.5));
+
         System.out.println(sistema.areaPerimetro(-8.33));
 
         Scanner sc = new Scanner(System.in);

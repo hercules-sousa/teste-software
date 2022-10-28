@@ -69,10 +69,13 @@ public class Sistema implements FuncionalidadesIF {
 
     @Override
     public boolean ehRetangulo(double lado1, double lado2, double lado3, double lado4) {
-        //Validações para valores <= 0
-        return (lado1 == lado2 && lado3 == lado4 && lado1 != lado3)
-                || (lado1 == lado3 && lado2 == lado4 && lado1 != lado2)
-                || (lado1 == lado4 && lado2 == lado3 && lado1 != lado2);
+        if (lado1 >= 0 && lado2 >= 0 && lado3 >= 0 && lado4 >= 0) {
+            return (lado1 == lado2 && lado3 == lado4)
+                    || (lado1 == lado3 && lado2 == lado4)
+                    || (lado1 == lado4 && lado2 == lado3);
+        } else {
+            return false;
+        }
     }
 
     @Override
