@@ -17,24 +17,17 @@ public class Sistema implements FuncionalidadesIF {
 
     @Override
     public Usuario cadastraUsuario(String nome, String email, String senha) {
-        if (validarEmail(email)) {
-            System.out.println("Email válido");
+        if (validarEmail(email) && validarSenha(senha)) {
+            Usuario usuario = new Usuario(nome, email, senha);
+            this.usuarios.add(usuario);
+            return usuario;
         }
-        else {
-            System.out.println("Email inválido");
-        }
-
-        System.out.println(validarSenha(senha) ? "Senha válida" : "Senha inválida");
 
         return null;
     }
 
     public ArrayList<Usuario> getUsuarios() {
         return usuarios;
-    }
-
-    public void setUsuarios(ArrayList<Usuario> usuarios) {
-        this.usuarios = usuarios;
     }
 
     @Override
@@ -44,7 +37,10 @@ public class Sistema implements FuncionalidadesIF {
 
     @Override
     public boolean ehTriangulo(double angulo1, double angulo2, double angulo3) {
-        return false;
+        if (angulo1 <= 0 || angulo1 > 180) return false;
+        if (angulo2 <= 0 || angulo2 > 180) return false;
+        if (angulo3 <= 0 || angulo3 > 180) return false;
+        return angulo1 + angulo2 + angulo3 == 180;
     }
 
     @Override
