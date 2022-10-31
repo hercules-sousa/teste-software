@@ -1,23 +1,11 @@
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 public class Sistema implements FuncionalidadesIF {
     private ArrayList<Usuario> usuarios = new ArrayList<>();
 
-    public boolean validarEmail(String email) {
-        String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
-                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
-        return Pattern.compile(regexPattern).matcher(email).matches();
-    }
-
-    public boolean validarSenha(String senha) {
-        String regexPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=(.*\\d){2,})(?=.*[@$!%*?&#])[A-Za-z\\d@$!%*?&#]{8,}$";
-        return Pattern.compile(regexPattern).matcher(senha).matches();
-    }
-
     @Override
     public Usuario cadastraUsuario(String nome, String email, String senha) {
-        if (validarEmail(email) && validarSenha(senha)) {
+        if (Usuario.isEmailValido(email) && Usuario.isSenhaValida(senha)) {
             Usuario usuario = new Usuario(nome, email, senha);
             this.usuarios.add(usuario);
             return usuario;
@@ -26,12 +14,20 @@ public class Sistema implements FuncionalidadesIF {
         return null;
     }
 
-    public ArrayList<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
     @Override
     public Raizes calculaFuncaoSegundoGrau(double a, double b, double c) {
+        if (a != 0) {
+            double delta = Math.pow(b, 2) - 4 * a * c;
+            if (delta > 0) {
+                double x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                double x2 = (-b - Math.sqrt(delta)) / (2 * a);
+                return new Raizes(x1, x2);
+            }
+            if (delta == 0) {
+                double x = -b / 2 * a;
+                return new Raizes(x, x);
+            }
+        }
         return null;
     }
 
