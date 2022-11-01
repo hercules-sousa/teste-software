@@ -7,12 +7,20 @@ class SenhaInvalidaException extends Exception {}
 public class Sistema implements FuncionalidadesIF {
     private ArrayList<Usuario> usuarios = new ArrayList<>();
 
+    public void setup() {
+        Repositorio.criarArquivo();
+        this.usuarios = Repositorio.importarUsuariosDoArquivo();
+    }
+
     @Override
     public Usuario cadastraUsuario(String nome, String email, String senha) throws EmailInvalidoException, SenhaInvalidaException {
         if (Usuario.isEmailValido(email)) {
             if (Usuario.isSenhaValida(senha)) {
                 Usuario usuario = new Usuario(nome, email, senha);
                 this.usuarios.add(usuario);
+
+                Repositorio.salvarUsuariosNoArquivo(this.usuarios);
+
                 return usuario;
             }
             else {
