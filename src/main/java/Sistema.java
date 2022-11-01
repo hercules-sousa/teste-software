@@ -79,7 +79,7 @@ public class Sistema implements FuncionalidadesIF {
 
     @Override
     public boolean ehRetangulo(double lado1, double lado2, double lado3, double lado4) {
-        if (lado1 >= 0 && lado2 >= 0 && lado3 >= 0 && lado4 >= 0) {
+        if (lado1 > 0 && lado2 > 0 && lado3 > 0 && lado4 > 0) {
             return (lado1 == lado2 && lado3 == lado4)
                     || (lado1 == lado3 && lado2 == lado4)
                     || (lado1 == lado4 && lado2 == lado3);
@@ -89,132 +89,98 @@ public class Sistema implements FuncionalidadesIF {
     }
 
     @Override
-    public double perimetroRetangulo(double lado1, double lado2, double lado3, double lado4) {
+    public double perimetroRetangulo(double lado1, double lado2, double lado3, double lado4) throws Exception{
         /*Os casos em que o perímetro dá erro se relaciona ao método ehRetangulo()*/
-        try {
-            if (ehRetangulo(lado1, lado2, lado3, lado4)) {
-                return lado1 + lado2 + lado3 + lado4;
-            } else {
-                throw new Exception();
-            }
+        if (ehRetangulo(lado1, lado2, lado3, lado4)) {
+            return lado1 + lado2 + lado3 + lado4;
+        } else {
+            throw new Exception();
         }
-        catch(Exception e){
-            System.out.println("Não foi possível calcular o perímetro. Verifique e tente novamente");
-        }
-        return -1;
     }
 
     @Override
-    public double areaRetangulo(double lado1, double lado2, double lado3, double lado4) {
-        double area = -1;
+    public double areaRetangulo(double lado1, double lado2, double lado3, double lado4) throws Exception{
         /*Os casos em que o perímetro dá erro se relaciona ao método ehRetangulo()*/
-        try {
-            if (ehRetangulo(lado1, lado2, lado3, lado4)) {
-                if (lado1 != lado2) {
-                    area = lado1 * lado2;
-                } else if (lado1 != lado3) {
-                    area = lado1 * lado3;
+        if (ehRetangulo(lado1, lado2, lado3, lado4)) {
+            double area = 0;
+            if(lado1 == lado2 && lado2 == lado3 && lado3 == lado4){
+                area =lado1 *lado2;
+            }
+            if (lado1 != lado2) {
+                area = lado1 * lado2;
+            } else if (lado1 != lado3) {
+                area = lado1 * lado3;
+            }
+            return Double.parseDouble(String.format("%.2f", area).replace(",", "."));
+        }
+        else{
+            throw new Exception();
+        }
+    }
+
+    @Override
+    public double calculadora(String expressao) throws NumberFormatException, ArithmeticException{
+        String[] operacao = expressao.trim().split("\\s+");
+        if (operacao.length != 3|| operacao[0].isEmpty() || operacao[2].isEmpty() || operacao[1].isEmpty()) {
+            throw new NumberFormatException();
+        }
+        double resultado = -1;
+        double num1 = Double.parseDouble(operacao[0]);
+        double num2 = Double.parseDouble(operacao[2]);
+        switch (operacao[1]) {
+            case "+":
+                resultado = num1 + num2;
+                break;
+            case "-":
+                resultado = num1 - num2;
+                break;
+            case "*":
+                resultado = num1 * num2;
+                break;
+            case "/":
+                if (num2 != 0) {
+                    resultado = num1 / num2;
+                } else {
+                    throw new ArithmeticException();
                 }
-            }
-            else{
-                throw new Exception();
-            }
+                break;
+            case "^":
+                if (num2 < 0 && num1 == 0 || num1 < 0 && !operacao[2].matches("[0-9]*")) {
+                    /*Casos em que a potência não funciona:
+                     *  1) Base igual a 0 e expoente negativo
+                     *  2) Base negativa com expoente fracionário (positivo ou negativo)*/
+                    throw new ArithmeticException();
+                }
+                resultado = Math.pow(num1, num2);
+                break;
+            default:
+                throw new ArithmeticException();
         }
-        catch (Exception e){
-            System.out.println("Não foi possível calcular a área. Verifique e tente novamente.");
-        }
-        return Double.parseDouble(String.format("%.2f", area).replace(",", "."));
+        return Double.parseDouble(String.format("%.2f", resultado).replace(",", "."));
     }
 
     @Override
-    public double calculadora(String expressao) {
-        try {
-            String[] operacao = expressao.trim().split("\\s+");
-            double resultado = -1;
-            double num1 = Double.parseDouble(operacao[0]);
-            double num2 = Double.parseDouble(operacao[2]);
-            switch (operacao[1]) {
-                case "+":
-                    resultado = num1 + num2;
-                    break;
-                case "-":
-                    resultado = num1 - num2;
-                    break;
-                case "*":
-                    resultado = num1 * num2;
-                    break;
-                case "/":
-                    if(num2 != 0){
-                        resultado = num1 / num2;
-                    }
-                    else{
-                        throw new ArithmeticException();
-                    }
-                    break;
-                case "^":
-                    if(num2 < 0 && num1 == 0 ||  num1 < 0 && !operacao[2].matches("[0-9]*")){
-                        /*Casos em que a potência não funciona:
-                        *  1) Base igual a 0 e expoente negativo
-                        *  2) Base negativa com expoente fracionário (positivo ou negativo)*/
-                        throw new ArithmeticException();
-                    }
-                    resultado = Math.pow(num1, num2);
-                    break;
-            }
-            return Double.parseDouble(String.format("%.2f", resultado).replace(",", "."));
-        }
-        catch (NumberFormatException err){
-            /*Caso o usuário digite valores que não sejam números*/
-            System.out.println("Digite números válidos para a operação. (Ex.: 2 / 2)");
-        }
-        catch (ArrayIndexOutOfBoundsException err){
-            /*Caso o usuário não digite todas as informações necessárias e o array não tem o tamanho que deveria*/
-            System.out.println("Digite números válidos para a opreção. (Ex.: 2 / 2)");
-        }
-        catch(ArithmeticException e ){
-            /*Caso alguma operação dê erro, como divisão e potência.*/
-            System.out.println("A operação é inválida. Tente realizar a operação com outros números.");
-        }
-        return -1;
-    }
-
-    @Override
-    public double areaCirculo(double raio) {
+    public double areaCirculo(double raio) throws Exception{
         /*Dá erro caso o raio seja negativo ou zero*/
-        double area = -1;
-        try{
-            if( raio > 0 ) {
-                area = Math.PI * (raio * raio);
-            }
-            else{
-                throw new Exception();
-            }
+        if( raio > 0 ) {
+            double area = Math.PI * (raio * raio);
+            return Double.parseDouble(String.format("%.2f", area).replace(",", "."));
         }
-        catch(Exception e){
-            System.out.println("Digite um valor de raio válido.");
-            System.out.println("Apenas valores maiores do que zero são permitidos ;)");
-
+        else{
+            throw new Exception();
         }
-        return Double.parseDouble(String.format("%.2f", area).replace(",", "."));
     }
 
     @Override
-    public double areaPerimetro(double raio) {
+    public double areaPerimetro(double raio) throws Exception{
         /*Dá erro caso o raio seja negativo ou zero*/
-        double perimetro = -1;
-        try {
-            if (raio > 0) {
-                perimetro = 2 * Math.PI * raio;
-            }
-            else{
-                throw new Exception();
-            }
+        if (raio > 0) {
+            double perimetro = 2 * Math.PI * raio;
+            return  Double.parseDouble(String.format("%.2f", perimetro).replace(",", "."));
         }
-        catch (Exception e){
-            System.out.println("Digite um valor de raio válido.");
-            System.out.println("Apenas valores maiores do que zero são permitidos ;)");
+        else{
+            throw new Exception();
         }
-        return  Double.parseDouble(String.format("%.2f", perimetro).replace(",", "."));
     }
 
     @Override
