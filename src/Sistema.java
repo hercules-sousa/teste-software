@@ -1,17 +1,27 @@
 import java.util.ArrayList;
 
+class EmailInvalidoException extends Exception {}
+
+class SenhaInvalidaException extends Exception {}
+
 public class Sistema implements FuncionalidadesIF {
     private ArrayList<Usuario> usuarios = new ArrayList<>();
 
     @Override
-    public Usuario cadastraUsuario(String nome, String email, String senha) {
-        if (Usuario.isEmailValido(email) && Usuario.isSenhaValida(senha)) {
-            Usuario usuario = new Usuario(nome, email, senha);
-            this.usuarios.add(usuario);
-            return usuario;
+    public Usuario cadastraUsuario(String nome, String email, String senha) throws EmailInvalidoException, SenhaInvalidaException {
+        if (Usuario.isEmailValido(email)) {
+            if (Usuario.isSenhaValida(senha)) {
+                Usuario usuario = new Usuario(nome, email, senha);
+                this.usuarios.add(usuario);
+                return usuario;
+            }
+            else {
+                throw new SenhaInvalidaException();
+            }
         }
-
-        return null;
+        else {
+            throw new EmailInvalidoException();
+        }
     }
 
     @Override

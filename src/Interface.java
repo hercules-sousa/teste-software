@@ -11,7 +11,8 @@ public class Interface {
                 "   7. Calcular área e perímetro de um retângulo\n" +
                 "   8. Calculadora\n" +
                 "   9. Calcular área e perímetro de um círculo\n" +
-                "   10. Calcular distância entre dois pontos\n";
+                "   10. Calcular distância entre dois pontos\n" +
+                "   11. Sair\n";
         System.out.println(menu);
         System.out.println("Escolha alguma das opções acima:");
     }
