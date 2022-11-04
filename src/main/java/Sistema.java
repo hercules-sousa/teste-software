@@ -144,11 +144,11 @@ public class Sistema implements FuncionalidadesIF {
                     throw new ArithmeticException();
                 }
                 break;
-            case "^":
-                if (num2 < 0 && num1 == 0 || num1 < 0 && !operacao[2].matches("[0-9]*")) {
+            case "**":
+                if (num2 < 0 && num1 == 0 || !operacao[2].matches("-?[0-9]*")) {
                     /*Casos em que a potência não funciona:
                      *  1) Base igual a 0 e expoente negativo
-                     *  2) Base negativa com expoente fracionário (positivo ou negativo)*/
+                     *  2) Expoente fracionário (positivo ou negativo)*/
                     throw new ArithmeticException();
                 }
                 resultado = Math.pow(num1, num2);
@@ -185,6 +185,8 @@ public class Sistema implements FuncionalidadesIF {
 
     @Override
     public double distanciaEntreDoisPontos(double x1, double y1, double x2, double y2) {
-        return 0;
+        double dist = Math.sqrt((x2 - x1)*(x2 - x1) + (y2 - y1)*(y2 - y1));
+        return Double.parseDouble(String.format("%.2f", dist).replace(",", "."));
+
     }
 }

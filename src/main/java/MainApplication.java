@@ -98,6 +98,26 @@ public class MainApplication {
                         System.out.println("Apenas valores maiores do que zero são permitidos ;)");
                     }
                     break;
+                case "10":
+                    try {
+                        Scanner sc2 = new Scanner(System.in);
+                        System.out.print("Digite as coordenadas do ponto 1 (x1 y1) separados por espaço: (Ex.: 0 3) ");
+                        String p1 = sc2.nextLine();
+                        String[] ponto1 = p1.trim().split("\\s+");
+                        double x1 = Double.parseDouble(ponto1[0]);
+                        double y1 = Double.parseDouble(ponto1[1]);
+                        System.out.print("Digite as coordenadas do ponto 2 (x2 y2) separados por espaço: (Ex.: 0 3) ");
+                        String p2 = sc2.nextLine();
+                        String[] ponto2 = p2.trim().split("\\s+");
+                        double x2 = Double.parseDouble(ponto2[0]);
+                        double y2 = Double.parseDouble(ponto2[1]);
+                        System.out.printf("A ditância entre os pontos é: %.2f\n", sistema.distanciaEntreDoisPontos(x1, y1, x2, y2));
+                    }
+                    catch(ArrayIndexOutOfBoundsException | NumberFormatException e){
+                        System.out.println("Coordenadas inválidas. Digite as coordenadas de cada ponto separado por espaço (Ex.: 0 3)");
+                    }
+
+
             }
             Interface.showMenu();
             entrada = scanner.nextLine();
