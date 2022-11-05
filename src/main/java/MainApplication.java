@@ -39,10 +39,9 @@ public class MainApplication {
                     String nome = Interface.pedirEntrada("Digite o nome do usuário:");
                     String email = Interface.pedirEntrada("Digite o email do usuário:");
                     String senha = Interface.pedirEntrada("Digite a senha do usuário:");
-                    Usuario usuario;
 
                     try {
-                        usuario = sistema.cadastraUsuario(nome, email, senha);
+                        Usuario usuario = sistema.cadastraUsuario(nome, email, senha);
                         System.out.println();
                         System.out.println("O usuário foi criado com sucesso.");
                         System.out.println(usuario);
@@ -59,12 +58,24 @@ public class MainApplication {
                         double a = Double.parseDouble(Interface.pedirEntrada("Digite o coeficiente a:"));
                         double b = Double.parseDouble(Interface.pedirEntrada("Digite o coeficiente b:"));
                         double c = Double.parseDouble(Interface.pedirEntrada("Digite o coeficiente c:"));
-                        System.out.println("A equação acima possui as seguintes raízes");
+                        System.out.println("A equação acima possui as seguintes raízes:");
                         Raizes raizes = sistema.calculaFuncaoSegundoGrau(a, b, c);
-                        System.out.println(raizes != null ? raizes : "Sem raízes reais");
+                        System.out.println(raizes != null ? raizes : "Sem raízes reais.");
                     }
                     catch (Exception e) {
-                        isMostrarMenu = Interface.lidarComErro("Os coeficientes digitados são inválidos");
+                        isMostrarMenu = Interface.lidarComErro("Os coeficientes digitados são inválidos.");
+                    }
+                }
+                case "3" -> {
+                    System.out.println("\nPreencha os valores dos lados do triângulo.");
+                    try {
+                        double lado1 = Double.parseDouble(Interface.pedirEntrada("Lado 1:"));
+                        double lado2 = Double.parseDouble(Interface.pedirEntrada("Lado 2:"));
+                        double lado3 = Double.parseDouble(Interface.pedirEntrada("Lado 3:"));
+                        System.out.println(sistema.ehTriangulo(lado1, lado2, lado3) ? "\nÉ um triângulo." : "\nNão é um triângulo.");
+                    }
+                    catch (Exception e) {
+                        isMostrarMenu = Interface.lidarComErro("Os valores dos lados digitados são inválidos.");
                     }
                 }
                 case "7" -> {
