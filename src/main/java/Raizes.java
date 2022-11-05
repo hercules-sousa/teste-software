@@ -9,9 +9,7 @@ public class Raizes {
 
     @Override
     public String toString() {
-        return "Raizes{" +
-                "x1=" + x1 +
-                ", x2=" + x2 +
-                '}';
+        return "x1 = " + x1 +
+                ", x2 = " + x2;
     }
 }

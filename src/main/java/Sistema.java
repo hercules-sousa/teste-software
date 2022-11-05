@@ -113,7 +113,7 @@ public class Sistema implements FuncionalidadesIF {
             }
             return Double.parseDouble(String.format("%.2f", area).replace(",", "."));
         }
-        else{
+        else {
             throw new Exception();
         }
     }
@@ -124,7 +124,7 @@ public class Sistema implements FuncionalidadesIF {
         if (operacao.length != 3|| operacao[0].isEmpty() || operacao[2].isEmpty() || operacao[1].isEmpty()) {
             throw new NumberFormatException();
         }
-        double resultado = -1;
+        double resultado;
         double num1 = Double.parseDouble(operacao[0]);
         double num2 = Double.parseDouble(operacao[2]);
         switch (operacao[1]) {

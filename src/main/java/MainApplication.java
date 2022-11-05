@@ -1,10 +1,8 @@
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class MainApplication {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         Sistema sistema = new Sistema();
 
         sistema.setup();
@@ -25,14 +23,14 @@ public class MainApplication {
         System.out.println("Olá, pessoal!");
 
         String opcaoEscolhida = null;
-        boolean isMostarMenu = true;
-        boolean perguntarOpcao = true;
-        while (isMostarMenu) {
-            if (perguntarOpcao) {
+        boolean rodarSistema = true;
+        boolean isMostrarMenu = true;
+        while (rodarSistema) {
+            if (isMostrarMenu) {
                 opcaoEscolhida = Interface.mostrarMenu("\nQual das nossas funcionalidades você gostaria de utilizar?", opcoes);
             }
 
-            perguntarOpcao = true;
+            isMostrarMenu = true;
 
             switch (opcaoEscolhida) {
                 case "1" -> {
@@ -50,90 +48,85 @@ public class MainApplication {
                         System.out.println(usuario);
                         System.out.println();
                     } catch (EmailInvalidoException e) {
-                        System.out.println();
-                        System.out.println(Usuario.isSenhaValida(senha) ? "O email digitado é inválido." : "O email e a senha são inválidos.");
-                        System.out.println();
-                        String resposta = Interface.mostrarMenuSimOuNao();
-                        perguntarOpcao = !resposta.equals("1");
+                        isMostrarMenu = Interface.lidarComErro(Usuario.isSenhaValida(senha) ? "O email digitado é inválido." : "O email e a senha são inválidos.");
                     } catch (SenhaInvalidaException e) {
-                        System.out.println();
-                        System.out.println("A senha digitada é inválida.");
-                        System.out.println();
-                        String resposta = Interface.mostrarMenuSimOuNao();
-                        perguntarOpcao = !resposta.equals("1");
+                        isMostrarMenu = Interface.lidarComErro("A senha digitada é inválida.");
+                    }
+                }
+                case "2" -> {
+                    System.out.println("\nPara calcular as raízes de uma equação de segundo grau vamos precisar dos coeficientes.");
+                    try {
+                        double a = Double.parseDouble(Interface.pedirEntrada("Digite o coeficiente a:"));
+                        double b = Double.parseDouble(Interface.pedirEntrada("Digite o coeficiente b:"));
+                        double c = Double.parseDouble(Interface.pedirEntrada("Digite o coeficiente c:"));
+                        System.out.println("A equação acima possui as seguintes raízes");
+                        Raizes raizes = sistema.calculaFuncaoSegundoGrau(a, b, c);
+                        System.out.println(raizes != null ? raizes : "Sem raízes reais");
+                    }
+                    catch (Exception e) {
+                        isMostrarMenu = Interface.lidarComErro("Os coeficientes digitados são inválidos");
                     }
                 }
                 case "7" -> {
-                    Scanner sc = new Scanner(System.in);
-                    System.out.print("Digite os valores dos lados do retângulo: \n");
-                    try{
+                    System.out.print("\nDigite os valores dos lados do retângulo: \n");
+                    try {
                         double[] lados = new double[4];
                         for (int i = 0; i < 4; i++) {
-                            System.out.printf("Lado %d: ", i+1);
-                            double lado = sc.nextDouble();
+                            double lado = Double.parseDouble(Interface.pedirEntrada(String.format("Lado %d", i + 1)));
                             lados[i] = lado;
                         }
                         System.out.printf("A área do retângulo é: %.2f\n", sistema.areaRetangulo(lados[0], lados[1], lados[2], lados[3]));
                         System.out.printf("O perímetro do retângulo é: %.2f\n", sistema.perimetroRetangulo(lados[0], lados[1], lados[2], lados[3]));
                     }
                     catch (InputMismatchException e){
-                        System.out.println("Dados inválidos. Digite 4 valores númericos positivos que representem os lados de um retângulo.");
+                        isMostrarMenu = Interface.lidarComErro("Dados inválidos. Digite 4 valores númericos positivos que representem os lados de um retângulo.");
                     }
                     catch (Exception e){
-                        System.out.println("Não foi possível calcular o perímetro. Verifique os valores e tente novamente.");
+                        isMostrarMenu = Interface.lidarComErro("Não foi possível calcular o perímetro.");
                     }
                 }
                 case "8" -> {
-                    System.out.print("Digite a expressão desejada (Ex.: 6 * 2): ");
-                    String operacao = scanner.nextLine();
-                    try{
+                    String operacao = Interface.pedirEntrada("Digite a expressão desejada (Ex.: 6 * 2): ");
+                    try {
                         System.out.printf("O resultado da operação é: %.2f\n", sistema.calculadora(operacao));
                     }
                     catch (NumberFormatException e){
                         /*Caso o usuário digite valores que não sejam números ou deixe algum número em branco*/
-                        System.out.println("Digite números válidos para a operação separados por espaços. (Ex.: 6 / 2)");
+                        isMostrarMenu = Interface.lidarComErro("Digite números válidos para a operação separados por espaços. (Ex.: 6 / 2)");
                     }
                     catch(ArithmeticException e ){
                         /*Caso alguma operação dê erro, como divisão e potência.*/
-                        System.out.println("A operação é inválida. Tente realizar a operação com outros números.");
+                        isMostrarMenu = Interface.lidarComErro("A operação é inválida. Tente realizar a operação com outros números.");
                     }
-                    break;
                 }
                 case "9" -> {
-                    Scanner sc1 = new Scanner(System.in);
-                    System.out.print("Digite o valor do raio do círculo: ");
-                    try{
-                        double raio = sc1.nextDouble();
+                    try {
+                        double raio = Double.parseDouble(Interface.pedirEntrada("\nDigite o valor do raio do círculo:"));
                         System.out.printf("A área do círculo é: %.2f\n", sistema.areaCirculo(raio));
                         System.out.printf("O perímetro do círculo é: %.2f\n", sistema.areaPerimetro(raio));
-                    } catch (InputMismatchException e){
-                        System.out.println("Digite um valor de raio válido.");
-                    } catch(Exception e){
-                        System.out.println("Digite um valor de raio válido.");
-                        System.out.println("Apenas valores maiores do que zero são permitidos ;)");
+                    } catch (InputMismatchException e) {
+                        isMostrarMenu = Interface.lidarComErro("Digite um valor de raio válido.");
+                    } catch (Exception e){
+                        isMostrarMenu = Interface.lidarComErro("Digite um valor de raio válido.\nApenas valores maiores do que zero são permitidos.");
                     }
-                    break;
                 }
                 case "10" -> {
                     try {
-                        Scanner sc2 = new Scanner(System.in);
-                        System.out.print("Digite as coordenadas do ponto 1 (x1 y1) separados por espaço: (Ex.: 0 3) ");
-                        String p1 = sc2.nextLine();
+                        String p1 = Interface.pedirEntrada("Digite as coordenadas do ponto 1 (x1 y1) separados por espaço: (Ex.: 0 3) ");
                         String[] ponto1 = p1.trim().split("\\s+");
                         double x1 = Double.parseDouble(ponto1[0]);
                         double y1 = Double.parseDouble(ponto1[1]);
-                        System.out.print("Digite as coordenadas do ponto 2 (x2 y2) separados por espaço: (Ex.: 0 3) ");
-                        String p2 = sc2.nextLine();
+                        String p2 = Interface.pedirEntrada("Digite as coordenadas do ponto 2 (x2 y2) separados por espaço: (Ex.: 0 3)");
                         String[] ponto2 = p2.trim().split("\\s+");
                         double x2 = Double.parseDouble(ponto2[0]);
                         double y2 = Double.parseDouble(ponto2[1]);
                         System.out.printf("A ditância entre os pontos é: %.2f\n", sistema.distanciaEntreDoisPontos(x1, y1, x2, y2));
                     }
                     catch(ArrayIndexOutOfBoundsException | NumberFormatException e){
-                        System.out.println("Coordenadas inválidas. Digite as coordenadas de cada ponto separado por espaço (Ex.: 0 3)");
+                        isMostrarMenu = Interface.lidarComErro("Coordenadas inválidas. Digite as coordenadas de cada ponto separado por espaço (Ex.: 0 3)");
                     }
                 }
-                case "11" -> isMostarMenu = false;
+                case "11" -> rodarSistema = false;
             }
         }
     }

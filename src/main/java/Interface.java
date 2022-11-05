@@ -22,11 +22,11 @@ public class Interface {
                     break;
                 }
                 else {
-                    throw new NumberFormatException();
+                    throw new Exception();
                 }
             } catch (Exception e) {
                 System.out.println();
-                System.out.println("Opção inválida");
+                System.out.println("O valor digitado não corresponde a nenhuma opção no menu acima.");
             }
 
             System.out.println(menu);
@@ -41,12 +41,20 @@ public class Interface {
         ArrayList<String> opcoes = new ArrayList<>();
         opcoes.add("Sim");
         opcoes.add("Não");
-        return mostrarMenu("Você deseja tentar novamente o cadastro?", opcoes);
+        return mostrarMenu("Você deseja tentar novamente a operação?", opcoes);
     }
 
     public static String pedirEntrada(String texto) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(texto);
         return scanner.nextLine();
+    }
+
+    public static boolean lidarComErro(String mensagem) {
+        System.out.println();
+        System.out.println(mensagem);
+        System.out.println();
+        String resposta = mostrarMenuSimOuNao();
+        return !resposta.equals("1");
     }
 }
