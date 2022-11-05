@@ -22,43 +22,45 @@ public class MainApplication {
         opcoes.add("Calcular distância entre dois pontos");
         opcoes.add("Sair");
 
+        System.out.println("Olá, pessoal!");
+
+        String opcaoEscolhida = null;
         boolean isMostarMenu = true;
+        boolean perguntarOpcao = true;
         while (isMostarMenu) {
-            String opcaoEscolhida = Interface.mostrarMenu(opcoes);
+            if (perguntarOpcao) {
+                opcaoEscolhida = Interface.mostrarMenu("\nQual das nossas funcionalidades você gostaria de utilizar?", opcoes);
+            }
+
+            perguntarOpcao = true;
 
             switch (opcaoEscolhida) {
                 case "1" -> {
-                    System.out.println("Vamos cadastrar um novo cliente.");
+                    System.out.println("\nVamos cadastrar um novo cliente.");
                     System.out.println("Para realizar essa operação vamos precisar de algumas informações.");
-                    System.out.println("Digite o nome do usuário:");
-                    String nome = scanner.nextLine();
-                    System.out.println("Digite o email do usuário:");
-                    String email = scanner.nextLine();
-                    System.out.println("Digite a senha do usuário:");
-                    String senha = scanner.nextLine();
+                    String nome = Interface.pedirEntrada("Digite o nome do usuário:");
+                    String email = Interface.pedirEntrada("Digite o email do usuário:");
+                    String senha = Interface.pedirEntrada("Digite a senha do usuário:");
                     Usuario usuario;
+
                     try {
                         usuario = sistema.cadastraUsuario(nome, email, senha);
                         System.out.println();
-                        System.out.println("O usuário foi criado com sucesso");
+                        System.out.println("O usuário foi criado com sucesso.");
                         System.out.println(usuario);
                         System.out.println();
                     } catch (EmailInvalidoException e) {
                         System.out.println();
-                        System.out.println("O email digitado é inválido");
+                        System.out.println(Usuario.isSenhaValida(senha) ? "O email digitado é inválido." : "O email e a senha são inválidos.");
                         System.out.println();
                         String resposta = Interface.mostrarMenuSimOuNao();
-                        if (resposta.equals("1")) {
-                            continue;
-                        }
+                        perguntarOpcao = !resposta.equals("1");
                     } catch (SenhaInvalidaException e) {
                         System.out.println();
-                        System.out.println("A senha digitada é inválida");
+                        System.out.println("A senha digitada é inválida.");
                         System.out.println();
                         String resposta = Interface.mostrarMenuSimOuNao();
-                        if (resposta.equals("1")) {
-                            continue;
-                        }
+                        perguntarOpcao = !resposta.equals("1");
                     }
                 }
                 case "7" -> {
