@@ -69,9 +69,13 @@ public class Interface {
         printColorido(mensagem, avisoFormato);
     }
 
+    public static void printErro(String mensagem) {
+        printColorido(mensagem, erroFormat);
+    }
+
     public static boolean lidarComErro(String mensagem) {
         System.out.println();
-        printColorido(mensagem, erroFormat);
+        printErro(mensagem);
         System.out.println();
         String resposta = mostrarMenuSimOuNao();
         return !resposta.equals("1");
