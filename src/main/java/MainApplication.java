@@ -5,8 +5,6 @@ public class MainApplication {
     public static void main(String[] args) {
         Sistema sistema = new Sistema();
 
-        sistema.setup();
-
         ArrayList<String> opcoes = new ArrayList<>();
         opcoes.add("Cadastrar clientes");
         opcoes.add("Calcular equação de segundo grau");
