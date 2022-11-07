@@ -124,7 +124,11 @@ public class MainApplication {
                         double lado3 = Double.parseDouble(Interface.pedirEntrada("Lado 3:"));
                         double lado4 = Double.parseDouble(Interface.pedirEntrada("Lado 4:"));
 
-                        System.out.println(sistema.ehRetangulo(lado1, lado2, lado3, lado4) ? "\nÉ retângulo.\n" : "\nNão é retângulo.\n");
+                        if (sistema.ehRetangulo(lado1, lado2, lado3, lado4)) {
+                            Interface.printSucesso("\nÉ retângulo.\n");
+                        } else {
+                            Interface.printAviso("\nNão é retângulo.\n");
+                        }
                     } catch (Exception e) {
                         isMostrarMenu = Interface.lidarComErro("Os valores dos lados digitados são inválidos.");
                     }
