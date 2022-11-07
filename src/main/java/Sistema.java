@@ -58,33 +58,40 @@ public class Sistema implements FuncionalidadesIF {
     }
 
     @Override
-    public boolean ehTrianguloRetangulo(double lado1, double lado2, double lado3) {
-        return (lado1 * lado1 + lado2 * lado2 == lado3 * lado3)
-                || (lado3 * lado3 + lado2 * lado2 == lado1 * lado1)
-                || (lado1 * lado1 + lado3 * lado3 == lado2 * lado2);
+    public boolean ehTrianguloRetangulo(double lado1, double lado2, double lado3) throws Exception {
+        if (lado1 > 0 && lado2 > 0 && lado3 > 0) {
+            return (lado1 * lado1 + lado2 * lado2 == lado3 * lado3)
+                    || (lado3 * lado3 + lado2 * lado2 == lado1 * lado1)
+                    || (lado1 * lado1 + lado3 * lado3 == lado2 * lado2);
+        } else {
+            throw new Exception();
+        }
     }
 
     @Override
-    public String classificaTriangulo(double angulo1, double angulo2, double angulo3) {
-        // Adicionar condição para verificar se é triângulo
-        if (angulo1 == 90 || angulo2 == 90 || angulo3 == 90)
-            return "Triângulo retângulo";
-        else if (angulo1 < 90 && angulo2 < 90 && angulo3 < 90)
-            return "Triângulo acutângulo";
-        else if (angulo1 > 90 || angulo2 > 90 || angulo3 > 90)
-            return "Triângulo obtusângulo";
+    public String classificaTriangulo(double angulo1, double angulo2, double angulo3) throws Exception {
+        if (ehTriangulo(angulo1, angulo2, angulo3)) {
+            if (angulo1 == 90 || angulo2 == 90 || angulo3 == 90)
+                return "Triângulo retângulo";
+            else if (angulo1 < 90 && angulo2 < 90 && angulo3 < 90)
+                return "Triângulo acutângulo";
+            else if (angulo1 > 90 || angulo2 > 90 || angulo3 > 90)
+                return "Triângulo obtusângulo";
+        } else {
+            throw new Exception();
+        }
 
-        return "Sem resultado";
+        return null;
     }
 
     @Override
-    public boolean ehRetangulo(double lado1, double lado2, double lado3, double lado4) {
+    public boolean ehRetangulo(double lado1, double lado2, double lado3, double lado4) throws Exception {
         if (lado1 > 0 && lado2 > 0 && lado3 > 0 && lado4 > 0) {
             return (lado1 == lado2 && lado3 == lado4)
                     || (lado1 == lado3 && lado2 == lado4)
                     || (lado1 == lado4 && lado2 == lado3);
         } else {
-            return false;
+            throw new Exception();
         }
     }
 

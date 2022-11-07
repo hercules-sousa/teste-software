@@ -10,7 +10,7 @@ public class MainApplication {
         ArrayList<String> opcoes = new ArrayList<>();
         opcoes.add("Cadastrar clientes");
         opcoes.add("Calcular equação de segundo grau");
-        opcoes.add("Verificar lados de um triângulo");
+        opcoes.add("Verificar ângulos de um triângulo");
         opcoes.add("Classificar triângulo");
         opcoes.add("Verificar lados de um triângulo retângulo");
         opcoes.add("Validar retângulo");
@@ -67,14 +67,54 @@ public class MainApplication {
                     }
                 }
                 case "3" -> {
-                    System.out.println("\nPreencha os valores dos lados do triângulo.");
+                    System.out.println("\nPreencha os valores dos ângulos do triângulo.");
+                    try {
+                        double angulo1 = Double.parseDouble(Interface.pedirEntrada("Ângulo 1:"));
+                        double angulo2 = Double.parseDouble(Interface.pedirEntrada("Ângulo 2:"));
+                        double angulo3 = Double.parseDouble(Interface.pedirEntrada("Ângulo 3:"));
+                        System.out.println(sistema.ehTriangulo(angulo1, angulo2, angulo3) ? "\nÉ um triângulo." : "\nNão é um triângulo.");
+                    }
+                    catch (Exception e) {
+                        isMostrarMenu = Interface.lidarComErro("Os valores dos ângulos digitados são inválidos.");
+                    }
+                }
+                case "4" -> {
+                    System.out.println("\nDigite os valores dos ângulos do triângulo:\n");
+
+                    try {
+                        double angulo1 = Double.parseDouble(Interface.pedirEntrada("Ângulo 1:"));
+                        double angulo2 = Double.parseDouble(Interface.pedirEntrada("Ângulo 2:"));
+                        double angulo3 = Double.parseDouble(Interface.pedirEntrada("Ângulo 3:"));
+
+                        System.out.println(sistema.classificaTriangulo(angulo1, angulo2, angulo3));
+                    } catch (Exception e) {
+                        isMostrarMenu = Interface.lidarComErro("Os valores dos ângulos digitados são inválidos.");
+                    }
+                }
+                case "5" -> {
+                    System.out.println("\nDigite os valores dos lados do triângulo:\n");
+
                     try {
                         double lado1 = Double.parseDouble(Interface.pedirEntrada("Lado 1:"));
                         double lado2 = Double.parseDouble(Interface.pedirEntrada("Lado 2:"));
                         double lado3 = Double.parseDouble(Interface.pedirEntrada("Lado 3:"));
-                        System.out.println(sistema.ehTriangulo(lado1, lado2, lado3) ? "\nÉ um triângulo." : "\nNão é um triângulo.");
+
+                        System.out.println(sistema.ehTrianguloRetangulo(lado1, lado2, lado3) ? "\nÉ um triângulo retângulo." : "\nNão é um triângulo retângulo.");
+                    } catch (Exception e) {
+                        isMostrarMenu = Interface.lidarComErro("Os valores dos lados digitados são inválidos.");
                     }
-                    catch (Exception e) {
+                }
+                case "6" -> {
+                    System.out.println("\nDigite os valores dos lados do retângulo:\n");
+
+                    try {
+                        double lado1 = Double.parseDouble(Interface.pedirEntrada("Lado 1:"));
+                        double lado2 = Double.parseDouble(Interface.pedirEntrada("Lado 2:"));
+                        double lado3 = Double.parseDouble(Interface.pedirEntrada("Lado 3:"));
+                        double lado4 = Double.parseDouble(Interface.pedirEntrada("Lado 4:"));
+
+                        System.out.println(sistema.ehRetangulo(lado1, lado2, lado3, lado4) ? "\nÉ retângulo.\n" : "\nNão é retângulo.\n");
+                    } catch (Exception e) {
                         isMostrarMenu = Interface.lidarComErro("Os valores dos lados digitados são inválidos.");
                     }
                 }
