@@ -11,10 +11,8 @@ public class Interface {
         }
 
         System.out.println(menu);
-        System.out.println("Escolha alguma das opções acima:");
+        String opcao = pedirEntrada("Escolha alguma das opções acima:");
 
-        Scanner scanner = new Scanner(System.in);
-        String opcao = scanner.nextLine();
         while (true) {
             try {
                 int intOpcao = Integer.parseInt(opcao);
@@ -29,8 +27,8 @@ public class Interface {
                 System.out.println("O valor digitado não corresponde a nenhuma opção no menu acima.");
             }
 
+            System.out.println(cabecalho);
             System.out.println(menu);
-            System.out.println();
             opcao = pedirEntrada("Escolha alguma das opções acima:");
         }
 
