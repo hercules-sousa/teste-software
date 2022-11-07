@@ -33,7 +33,7 @@ public class Interface {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                lidarComErro("O valor digitado não corresponde a nenhuma opção no menu acima.");
+                printErro("\nO valor digitado não corresponde a nenhuma opção no menu acima.");
             }
 
             System.out.println(cabecalho);

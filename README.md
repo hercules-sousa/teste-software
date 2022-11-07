@@ -42,3 +42,5 @@ A validação de email será feita através de expressão regular. A expressão 
     - Pontos consecutivos não são permitidos;
     - O “-” e o “.” não são permitidos nem no fim nem no começo do domínio.
 - Tamanho máximo de 64 caracteres para o nome do email.
+
+## [Sobre a colorização no terminal](diogonunes.com/blog/jcolor-java-color-messages-terminal/)
