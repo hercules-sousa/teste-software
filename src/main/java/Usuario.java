@@ -24,10 +24,10 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" +
-                "nome='" + nome + '\'' +
-                ", email='" + email + '\'' +
-                ", senha='" + senha + '\'' +
-                '}';
+        return String.format("""
+                Informações do usuário:
+                Nome = %s
+                Email = %s
+                Senha = %s""", nome, email, senha);
     }
 }

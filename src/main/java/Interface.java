@@ -1,13 +1,23 @@
+import com.diogonunes.jcolor.AnsiFormat;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static com.diogonunes.jcolor.Ansi.colorize;
+import static com.diogonunes.jcolor.Attribute.*;
+
 public class Interface {
+    private static final AnsiFormat erroFormat = new AnsiFormat(RED_TEXT(), BOLD());
+    private static final AnsiFormat sucessoFormato = new AnsiFormat(BRIGHT_GREEN_TEXT());
+    private static final AnsiFormat avisoFormato = new AnsiFormat(BRIGHT_YELLOW_TEXT());
+    private static final AnsiFormat opcaoMenuFormato = new AnsiFormat(ITALIC());
+
     public static String mostrarMenu(String cabecalho, ArrayList<String> opcoes) {
         System.out.println(cabecalho);
 
         StringBuilder menu = new StringBuilder("   \n");
         for(int i = 1; i <= opcoes.size(); i++) {
-            menu.append(String.format("   %d. %s\n", i, opcoes.get(i - 1)));
+            menu.append(colorize(String.format("   %d. %s\n", i, opcoes.get(i - 1)), opcaoMenuFormato));
         }
 
         System.out.println(menu);
@@ -23,8 +33,7 @@ public class Interface {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                System.out.println();
-                System.out.println("O valor digitado não corresponde a nenhuma opção no menu acima.");
+                lidarComErro("O valor digitado não corresponde a nenhuma opção no menu acima.");
             }
 
             System.out.println(cabecalho);
@@ -48,9 +57,21 @@ public class Interface {
         return scanner.nextLine();
     }
 
+    private static void printColorido(String texto, AnsiFormat formato) {
+        System.out.println(colorize(texto, formato));
+    }
+
+    public static void printSucesso(String mensagem) {
+        printColorido(mensagem, sucessoFormato);
+    }
+
+    public static void printAviso(String mensagem) {
+        printColorido(mensagem, avisoFormato);
+    }
+
     public static boolean lidarComErro(String mensagem) {
         System.out.println();
-        System.out.println(mensagem);
+        printColorido(mensagem, erroFormat);
         System.out.println();
         String resposta = mostrarMenuSimOuNao();
         return !resposta.equals("1");

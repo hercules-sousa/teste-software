@@ -46,7 +46,7 @@ public class Sistema implements FuncionalidadesIF {
                 return new Raizes(x1, x2);
             }
             if (delta == 0) {
-                double x = -b / 2 * a;
+                double x = -b / (2 * a);
                 return new Raizes(x, x);
             }
         }

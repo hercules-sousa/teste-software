@@ -41,7 +41,7 @@ public class MainApplication {
                     try {
                         Usuario usuario = sistema.cadastraUsuario(nome, email, senha);
                         System.out.println();
-                        System.out.println("O usuário foi criado com sucesso.");
+                        Interface.printSucesso("O usuário foi criado com sucesso.");
                         System.out.println(usuario);
                         System.out.println();
                     } catch (EmailInvalidoException e) {
@@ -56,12 +56,17 @@ public class MainApplication {
                         double a = Double.parseDouble(Interface.pedirEntrada("Digite o coeficiente a:"));
                         double b = Double.parseDouble(Interface.pedirEntrada("Digite o coeficiente b:"));
                         double c = Double.parseDouble(Interface.pedirEntrada("Digite o coeficiente c:"));
-                        System.out.println("A equação acima possui as seguintes raízes:");
                         Raizes raizes = sistema.calculaFuncaoSegundoGrau(a, b, c);
-                        System.out.println(raizes != null ? raizes : "Sem raízes reais.");
+
+                        if (raizes != null) {
+                            System.out.println("\nA equação acima possui as seguintes raízes:");
+                            System.out.println(raizes);
+                        } else {
+                            Interface.printAviso("\nSem raízes reais.");
+                        }
                     }
                     catch (Exception e) {
-                        isMostrarMenu = Interface.lidarComErro("Os coeficientes digitados são inválidos.");
+                        isMostrarMenu = Interface.lidarComErro("Coeficiente inválido.");
                     }
                 }
                 case "3" -> {
@@ -70,7 +75,11 @@ public class MainApplication {
                         double angulo1 = Double.parseDouble(Interface.pedirEntrada("Ângulo 1:"));
                         double angulo2 = Double.parseDouble(Interface.pedirEntrada("Ângulo 2:"));
                         double angulo3 = Double.parseDouble(Interface.pedirEntrada("Ângulo 3:"));
-                        System.out.println(sistema.ehTriangulo(angulo1, angulo2, angulo3) ? "\nÉ um triângulo." : "\nNão é um triângulo.");
+                        if (sistema.ehTriangulo(angulo1, angulo2, angulo3)) {
+                            Interface.printSucesso("\nÉ um triângulo.");
+                        } else {
+                            Interface.printAviso("\nNão é um triângulo.");
+                        }
                     }
                     catch (Exception e) {
                         isMostrarMenu = Interface.lidarComErro("Os valores dos ângulos digitados são inválidos.");
@@ -84,7 +93,7 @@ public class MainApplication {
                         double angulo2 = Double.parseDouble(Interface.pedirEntrada("Ângulo 2:"));
                         double angulo3 = Double.parseDouble(Interface.pedirEntrada("Ângulo 3:"));
 
-                        System.out.println(sistema.classificaTriangulo(angulo1, angulo2, angulo3));
+                        System.out.println("\n" + sistema.classificaTriangulo(angulo1, angulo2, angulo3) + ".");
                     } catch (Exception e) {
                         isMostrarMenu = Interface.lidarComErro("Os valores dos ângulos digitados são inválidos.");
                     }
@@ -97,7 +106,11 @@ public class MainApplication {
                         double lado2 = Double.parseDouble(Interface.pedirEntrada("Lado 2:"));
                         double lado3 = Double.parseDouble(Interface.pedirEntrada("Lado 3:"));
 
-                        System.out.println(sistema.ehTrianguloRetangulo(lado1, lado2, lado3) ? "\nÉ um triângulo retângulo." : "\nNão é um triângulo retângulo.");
+                        if (sistema.ehTrianguloRetangulo(lado1, lado2, lado3)) {
+                            Interface.printSucesso("\nÉ um triângulo retângulo.");
+                        } else {
+                            Interface.printAviso("\nNão é um triângulo retângulo.");
+                        }
                     } catch (Exception e) {
                         isMostrarMenu = Interface.lidarComErro("Os valores dos lados digitados são inválidos.");
                     }
