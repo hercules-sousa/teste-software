@@ -7,7 +7,7 @@ import static com.diogonunes.jcolor.Ansi.colorize;
 import static com.diogonunes.jcolor.Attribute.*;
 
 public class Interface {
-    private static final AnsiFormat erroFormat = new AnsiFormat(RED_TEXT(), BOLD());
+    private static final AnsiFormat erroFormato = new AnsiFormat(RED_TEXT(), BOLD());
     private static final AnsiFormat sucessoFormato = new AnsiFormat(BRIGHT_GREEN_TEXT());
     private static final AnsiFormat avisoFormato = new AnsiFormat(BRIGHT_YELLOW_TEXT());
     private static final AnsiFormat opcaoMenuFormato = new AnsiFormat(ITALIC());
@@ -57,20 +57,20 @@ public class Interface {
         return scanner.nextLine();
     }
 
-    private static void printColorido(String texto, AnsiFormat formato) {
+    private static void printFormatado(String texto, AnsiFormat formato) {
         System.out.println(colorize(texto, formato));
     }
 
     public static void printSucesso(String mensagem) {
-        printColorido(mensagem, sucessoFormato);
+        printFormatado(mensagem, sucessoFormato);
     }
 
     public static void printAviso(String mensagem) {
-        printColorido(mensagem, avisoFormato);
+        printFormatado(mensagem, avisoFormato);
     }
 
     public static void printErro(String mensagem) {
-        printColorido(mensagem, erroFormat);
+        printFormatado(mensagem, erroFormato);
     }
 
     public static boolean lidarComErro(String mensagem) {
