@@ -33,7 +33,7 @@ public class Interface {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                printErro("\nO valor digitado não corresponde a nenhuma opção no menu acima.");
+                printErro("\nO valor digitado não corresponde a nenhuma opção no menu acima.\n");
             }
 
             System.out.println(cabecalho);
@@ -78,6 +78,7 @@ public class Interface {
         printErro(mensagem);
         System.out.println();
         String resposta = mostrarMenuSimOuNao();
+        System.out.println();
         return !resposta.equals("1");
     }
 }

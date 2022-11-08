@@ -18,14 +18,14 @@ public class MainApplication {
         opcoes.add("Calcular distância entre dois pontos");
         opcoes.add("Sair");
 
-        System.out.println("Olá, pessoal!");
+        System.out.println("Olá, pessoal!\n");
 
         String opcaoEscolhida = null;
         boolean rodarSistema = true;
         boolean isMostrarMenu = true;
         while (rodarSistema) {
             if (isMostrarMenu) {
-                opcaoEscolhida = Interface.mostrarMenu("\nQual das nossas funcionalidades você gostaria de utilizar?", opcoes);
+                opcaoEscolhida = Interface.mostrarMenu("Qual das nossas funcionalidades você gostaria de utilizar?", opcoes);
             }
 
             isMostrarMenu = true;

@@ -54,10 +54,10 @@ public class Sistema implements FuncionalidadesIF {
     }
 
     @Override
-    public boolean ehTriangulo(double angulo1, double angulo2, double angulo3) {
-        if (angulo1 <= 0 || angulo1 > 180) return false;
-        if (angulo2 <= 0 || angulo2 > 180) return false;
-        if (angulo3 <= 0 || angulo3 > 180) return false;
+    public boolean ehTriangulo(double angulo1, double angulo2, double angulo3) throws Exception {
+        if (angulo1 <= 0 || angulo1 > 180) throw new Exception();
+        if (angulo2 <= 0 || angulo2 > 180) throw new Exception();
+        if (angulo3 <= 0 || angulo3 > 180) throw new Exception();
         return angulo1 + angulo2 + angulo3 == 180;
     }
 
