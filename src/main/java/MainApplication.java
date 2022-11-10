@@ -116,21 +116,21 @@ public class MainApplication {
                     }
                 }
                 case "6" -> {
-                    System.out.println("\nDigite os valores dos lados do retângulo:\n");
+                    System.out.println("\nDigite os valores dos ângulos do retângulo:\n");
 
                     try {
-                        double lado1 = Double.parseDouble(Interface.pedirEntrada("Lado 1:"));
-                        double lado2 = Double.parseDouble(Interface.pedirEntrada("Lado 2:"));
-                        double lado3 = Double.parseDouble(Interface.pedirEntrada("Lado 3:"));
-                        double lado4 = Double.parseDouble(Interface.pedirEntrada("Lado 4:"));
+                        double angulo1 = Double.parseDouble(Interface.pedirEntrada("Ângulo 1:"));
+                        double angulo2 = Double.parseDouble(Interface.pedirEntrada("Ângulo 2:"));
+                        double angulo3 = Double.parseDouble(Interface.pedirEntrada("Ângulo 3:"));
+                        double angulo4 = Double.parseDouble(Interface.pedirEntrada("Ângulo 4:"));
 
-                        if (sistema.ehRetangulo(lado1, lado2, lado3, lado4)) {
+                        if (sistema.ehRetangulo(angulo1, angulo2, angulo3, angulo4)) {
                             Interface.printSucesso("\nÉ retângulo.\n");
                         } else {
                             Interface.printAviso("\nNão é retângulo.\n");
                         }
                     } catch (Exception e) {
-                        isMostrarMenu = Interface.lidarComErro("Os valores dos lados digitados são inválidos.");
+                        isMostrarMenu = Interface.lidarComErro("Os valores dos ângulos digitados são inválidos.");
                     }
                 }
                 case "7" -> {

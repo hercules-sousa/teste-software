@@ -89,14 +89,13 @@ public class Sistema implements FuncionalidadesIF {
     }
 
     @Override
-    public boolean ehRetangulo(double lado1, double lado2, double lado3, double lado4) throws Exception {
-        if (lado1 > 0 && lado2 > 0 && lado3 > 0 && lado4 > 0) {
-            return (lado1 == lado2 && lado3 == lado4)
-                    || (lado1 == lado3 && lado2 == lado4)
-                    || (lado1 == lado4 && lado2 == lado3);
-        } else {
-            throw new Exception();
-        }
+    public boolean ehRetangulo(double angulo1, double angulo2, double angulo3, double angulo4) throws Exception {
+        if (angulo1 <= 0) throw new Exception();
+        if (angulo2 <= 0) throw new Exception();
+        if (angulo3 <= 0) throw new Exception();
+        if (angulo4 <= 0) throw new Exception();
+
+        return angulo1 == 90 && angulo2 == 90 && angulo3 == 90 && angulo4 == 90;
     }
 
     @Override
