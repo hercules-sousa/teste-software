@@ -99,29 +99,18 @@ public class Sistema implements FuncionalidadesIF {
     }
 
     @Override
-    public double perimetroRetangulo(double lado1, double lado2, double lado3, double lado4) throws Exception{
-        /*Os casos em que o perímetro dá erro se relaciona ao método ehRetangulo()*/
-        if (ehRetangulo(lado1, lado2, lado3, lado4)) {
-            return lado1 + lado2 + lado3 + lado4;
+    public double perimetroRetangulo(double lado1, double lado2) throws Exception{
+        if (lado1 > 0 && lado2 > 0) {
+            return (lado1 * 2) + (lado2 * 2) ;
         } else {
             throw new Exception();
         }
     }
 
     @Override
-    public double areaRetangulo(double lado1, double lado2, double lado3, double lado4) throws Exception{
-        /*Os casos em que o perímetro dá erro se relaciona ao método ehRetangulo()*/
-        if (ehRetangulo(lado1, lado2, lado3, lado4)) {
-            double area = 0;
-            if(lado1 == lado2 && lado2 == lado3 && lado3 == lado4){
-                area =lado1 *lado2;
-            }
-            if (lado1 != lado2) {
-                area = lado1 * lado2;
-            } else if (lado1 != lado3) {
-                area = lado1 * lado3;
-            }
-            return Double.parseDouble(String.format("%.2f", area).replace(",", "."));
+    public double areaRetangulo(double lado1, double lado2) throws Exception{
+        if (lado1 > 0 && lado2 > 0) {
+            return Double.parseDouble(String.format("%.2f", lado1*lado2).replace(",", "."));
         }
         else {
             throw new Exception();
@@ -171,7 +160,6 @@ public class Sistema implements FuncionalidadesIF {
 
     @Override
     public double areaCirculo(double raio) throws Exception{
-        /*Dá erro caso o raio seja negativo ou zero*/
         if( raio > 0 ) {
             double area = Math.PI * (raio * raio);
             return Double.parseDouble(String.format("%.2f", area).replace(",", "."));
@@ -183,7 +171,6 @@ public class Sistema implements FuncionalidadesIF {
 
     @Override
     public double areaPerimetro(double raio) throws Exception{
-        /*Dá erro caso o raio seja negativo ou zero*/
         if (raio > 0) {
             double perimetro = 2 * Math.PI * raio;
             return  Double.parseDouble(String.format("%.2f", perimetro).replace(",", "."));

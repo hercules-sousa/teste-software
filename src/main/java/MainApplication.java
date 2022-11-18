@@ -136,57 +136,55 @@ public class MainApplication {
                 case "7" -> {
                     System.out.print("\nDigite os valores dos lados do retângulo: \n");
                     try {
-                        double[] lados = new double[4];
-                        for (int i = 0; i < 4; i++) {
+                        double[] lados = new double[2];
+                        for (int i = 0; i < 2; i++) {
                             double lado = Double.parseDouble(Interface.pedirEntrada(String.format("Lado %d", i + 1)));
                             lados[i] = lado;
                         }
-                        System.out.printf("A área do retângulo é: %.2f\n", sistema.areaRetangulo(lados[0], lados[1], lados[2], lados[3]));
-                        System.out.printf("O perímetro do retângulo é: %.2f\n", sistema.perimetroRetangulo(lados[0], lados[1], lados[2], lados[3]));
+                        System.out.printf("\nA área do retângulo é: %.2f\n", sistema.areaRetangulo(lados[0], lados[1]));
+                        System.out.printf("O perímetro do retângulo é: %.2f\n\n", sistema.perimetroRetangulo(lados[0], lados[1]));
                     }
                     catch (InputMismatchException e){
-                        isMostrarMenu = Interface.lidarComErro("Dados inválidos. Digite 4 valores númericos positivos que representem os lados de um retângulo.");
+                        isMostrarMenu = Interface.lidarComErro("Dados inválidos. Digite 2 valores númericos positivos que representem a base e a altura de um retângulo.");
                     }
                     catch (Exception e){
-                        isMostrarMenu = Interface.lidarComErro("Não foi possível calcular o perímetro.");
+                        isMostrarMenu = Interface.lidarComErro("Não foi possível calcular o perímetro. Verifique os valores e tente novamente.");
                     }
                 }
                 case "8" -> {
-                    String operacao = Interface.pedirEntrada("Digite a expressão desejada (Ex.: 6 * 2): ");
+                    String operacao = Interface.pedirEntrada("\nDigite a expressão desejada (Ex.: 6 * 2): ");
                     try {
-                        System.out.printf("O resultado da operação é: %.2f\n", sistema.calculadora(operacao));
+                        System.out.printf("\nO resultado da operação é: %.2f\n\n", sistema.calculadora(operacao));
                     }
                     catch (NumberFormatException e){
-                        /*Caso o usuário digite valores que não sejam números ou deixe algum número em branco*/
                         isMostrarMenu = Interface.lidarComErro("Digite números válidos para a operação separados por espaços. (Ex.: 6 / 2)");
                     }
                     catch(ArithmeticException e ){
-                        /*Caso alguma operação dê erro, como divisão e potência.*/
                         isMostrarMenu = Interface.lidarComErro("A operação é inválida. Tente realizar a operação com outros números.");
                     }
                 }
                 case "9" -> {
                     try {
                         double raio = Double.parseDouble(Interface.pedirEntrada("\nDigite o valor do raio do círculo:"));
-                        System.out.printf("A área do círculo é: %.2f\n", sistema.areaCirculo(raio));
-                        System.out.printf("O perímetro do círculo é: %.2f\n", sistema.areaPerimetro(raio));
+                        System.out.printf("\nA área do círculo é: %.2f\n", sistema.areaCirculo(raio));
+                        System.out.printf("O perímetro do círculo é: %.2f\n\n", sistema.areaPerimetro(raio));
                     } catch (InputMismatchException e) {
                         isMostrarMenu = Interface.lidarComErro("Digite um valor de raio válido.");
                     } catch (Exception e){
-                        isMostrarMenu = Interface.lidarComErro("Digite um valor de raio válido.\nApenas valores maiores do que zero são permitidos.");
+                        isMostrarMenu = Interface.lidarComErro("Digite um valor de raio válido.\nApenas valores positivos são permitidos.");
                     }
                 }
                 case "10" -> {
                     try {
-                        String p1 = Interface.pedirEntrada("Digite as coordenadas do ponto 1 (x1 y1) separados por espaço: (Ex.: 0 3) ");
+                        String p1 = Interface.pedirEntrada("\nDigite as coordenadas do ponto 1 (x1 y1) separados por espaço: (Ex.: 0 3) ");
                         String[] ponto1 = p1.trim().split("\\s+");
                         double x1 = Double.parseDouble(ponto1[0]);
                         double y1 = Double.parseDouble(ponto1[1]);
-                        String p2 = Interface.pedirEntrada("Digite as coordenadas do ponto 2 (x2 y2) separados por espaço: (Ex.: 0 3)");
+                        String p2 = Interface.pedirEntrada("\nDigite as coordenadas do ponto 2 (x2 y2) separados por espaço: (Ex.: 0 3)");
                         String[] ponto2 = p2.trim().split("\\s+");
                         double x2 = Double.parseDouble(ponto2[0]);
                         double y2 = Double.parseDouble(ponto2[1]);
-                        System.out.printf("A ditância entre os pontos é: %.2f\n", sistema.distanciaEntreDoisPontos(x1, y1, x2, y2));
+                        System.out.printf("\nA ditância entre os pontos é: %.2f\n\n", sistema.distanciaEntreDoisPontos(x1, y1, x2, y2));
                     }
                     catch(ArrayIndexOutOfBoundsException | NumberFormatException e){
                         isMostrarMenu = Interface.lidarComErro("Coordenadas inválidas. Digite as coordenadas de cada ponto separado por espaço (Ex.: 0 3)");

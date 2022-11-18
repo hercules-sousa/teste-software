@@ -15,14 +15,16 @@
 - [ ]  O sistema deve classificar como [triângulo retângulo, acutângulo e obtusângulo](https://escolakids.uol.com.br/matematica/classificacao-dos-triangulos.htm#:~:text=Podemos%20classificar%20os%20tri%C3%A2ngulos%20de,tri%C3%A2ngulos%20ret%C3%A2ngulos%2C%20acut%C3%A2ngulos%20ou%20obtus%C3%A2ngulos.) se os valores dos ângulos correspondem a um triângulo.
 - [ ]  O sistema deve informar se três valores lidos correspondem aos lados de um [triângulo retângulo](https://mundoeducacao.uol.com.br/matematica/triangulo-retangulo.htm#:~:text=Chamamos%20de%20hipotenusa%20o%20maior,igual%20ao%20quadrado%20da%20hipotenusa.)
 - [ ]  O sistema deve informar se quatro valores reais lidos representam um retângulo.
-- [ ]  O sistema deve calcular área e perímetro, se dois valores reais lidos representarem um retângulo
-- [ ]  O sistema deve ter uma função de calculadora para as operações:
-    - [ ]  Soma de dois valores
-    - [ ]  Subtração de dois valores
-    - [ ]  Multiplicação de dois valores
-    - [ ]  Divisão de dois valores
-    - [ ]  Potência
-- [ ] O sistema deve calcular a área e o perímetro de um círculo, a partir de um valor que represente um raio.
+- [x]  O sistema deve calcular área e perímetro, se dois valores reais lidos representarem um retângulo
+- [x]  O sistema deve ter uma função de calculadora para as operações:
+    - [x]  Soma de dois valores
+    - [x]  Subtração de dois valores
+    - [x]  Multiplicação de dois valores
+    - [x]  Divisão de dois valores
+    - [x]  Potência
+- [x] O sistema deve calcular a área e o perímetro de um círculo, a partir de um valor que represente um raio.
+- [x] O sistema deve calcular a distância entre dois pontos (p1 e p2) quaisquer no plano cartesiano. Para isso, deve ler quatro valores correspondentes a x1 e y1, coordenadas de p1, e x2 e y2, de p2.
+
 
 # Requisitos não funcionais
 
