@@ -41,7 +41,7 @@ public class MainApplication {
                     try {
                         Usuario usuario = sistema.cadastraUsuario(nome, email, senha);
                         System.out.println();
-                        Interface.printSucesso("O usuário foi criado com sucesso.");
+                        System.out.println("O usuário foi criado com sucesso.");
                         System.out.println(usuario);
                         System.out.println();
                     } catch (EmailInvalidoException e) {
@@ -62,7 +62,7 @@ public class MainApplication {
                             System.out.println("\nA equação acima possui as seguintes raízes:");
                             System.out.println(raizes + "\n");
                         } else {
-                            Interface.printAviso("\nSem raízes reais.\n");
+                            System.out.println("\nSem raízes reais.\n");
                         }
                     }
                     catch (Exception e) {
@@ -76,9 +76,9 @@ public class MainApplication {
                         double angulo2 = Double.parseDouble(Interface.pedirEntrada("Ângulo 2:"));
                         double angulo3 = Double.parseDouble(Interface.pedirEntrada("Ângulo 3:"));
                         if (sistema.ehTriangulo(angulo1, angulo2, angulo3)) {
-                            Interface.printSucesso("\nÉ um triângulo.\n");
+                            System.out.println("\nÉ um triângulo.\n");
                         } else {
-                            Interface.printAviso("\nNão é um triângulo.\n");
+                            System.out.println("\nNão é um triângulo.\n");
                         }
                     }
                     catch (Exception e) {
@@ -107,9 +107,9 @@ public class MainApplication {
                         double lado3 = Double.parseDouble(Interface.pedirEntrada("Lado 3:"));
 
                         if (sistema.ehTrianguloRetangulo(lado1, lado2, lado3)) {
-                            Interface.printSucesso("\nÉ um triângulo retângulo.\n");
+                            System.out.println("\nÉ um triângulo retângulo.\n");
                         } else {
-                            Interface.printAviso("\nNão é um triângulo retângulo.\n");
+                            System.out.println("\nNão é um triângulo retângulo.\n");
                         }
                     } catch (Exception e) {
                         isMostrarMenu = Interface.lidarComErro("Os valores dos lados do triângulo informados são inválidos. Tente valores numéricos maiores que zero.");
@@ -125,9 +125,9 @@ public class MainApplication {
                         double angulo4 = Double.parseDouble(Interface.pedirEntrada("Ângulo 4:"));
 
                         if (sistema.ehRetangulo(angulo1, angulo2, angulo3, angulo4)) {
-                            Interface.printSucesso("\nÉ retângulo.\n");
+                            System.out.println("\nÉ retângulo.\n");
                         } else {
-                            Interface.printAviso("\nNão é retângulo.\n");
+                            System.out.println("\nNão é retângulo.\n");
                         }
                     } catch (Exception e) {
                         isMostrarMenu = Interface.lidarComErro("Os valores dos ângulos do retângulo informados são inválidos. Tente valores numéricos maiores que zero.");

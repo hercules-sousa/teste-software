@@ -1,23 +1,13 @@
-import com.diogonunes.jcolor.AnsiFormat;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static com.diogonunes.jcolor.Ansi.colorize;
-import static com.diogonunes.jcolor.Attribute.*;
-
 public class Interface {
-    private static final AnsiFormat erroFormato = new AnsiFormat(RED_TEXT(), BOLD());
-    private static final AnsiFormat sucessoFormato = new AnsiFormat(BRIGHT_GREEN_TEXT());
-    private static final AnsiFormat avisoFormato = new AnsiFormat(BRIGHT_YELLOW_TEXT());
-    private static final AnsiFormat opcaoMenuFormato = new AnsiFormat(ITALIC());
-
     public static String mostrarMenu(String cabecalho, ArrayList<String> opcoes) {
         System.out.println(cabecalho);
 
         StringBuilder menu = new StringBuilder("   \n");
         for(int i = 1; i <= opcoes.size(); i++) {
-            menu.append(colorize(String.format("   %d. %s\n", i, opcoes.get(i - 1)), opcaoMenuFormato));
+            menu.append(String.format("   %d. %s\n", i, opcoes.get(i - 1)));
         }
 
         System.out.println(menu);
@@ -33,7 +23,7 @@ public class Interface {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                printErro("\nO valor digitado não corresponde a nenhuma opção no menu acima.\n");
+                System.out.println("\n\u001B[31mO valor digitado não corresponde a nenhuma opção no menu acima.\u001B[0m\n");
             }
 
             System.out.println(cabecalho);
@@ -57,25 +47,9 @@ public class Interface {
         return scanner.nextLine();
     }
 
-    private static void printFormatado(String texto, AnsiFormat formato) {
-        System.out.println(colorize(texto, formato));
-    }
-
-    public static void printSucesso(String mensagem) {
-        printFormatado(mensagem, sucessoFormato);
-    }
-
-    public static void printAviso(String mensagem) {
-        printFormatado(mensagem, avisoFormato);
-    }
-
-    public static void printErro(String mensagem) {
-        printFormatado(mensagem, erroFormato);
-    }
-
     public static boolean lidarComErro(String mensagem) {
         System.out.println();
-        printErro(mensagem);
+        System.out.println("\u001B[31m" + mensagem + "\u001B[0m");
         System.out.println();
         String resposta = mostrarMenuSimOuNao();
         System.out.println();
