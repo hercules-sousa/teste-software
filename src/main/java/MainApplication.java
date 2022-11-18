@@ -33,7 +33,7 @@ public class MainApplication {
             switch (opcaoEscolhida) {
                 case "1" -> {
                     System.out.println("\nVamos cadastrar um novo cliente.");
-                    System.out.println("Para realizar essa operação vamos precisar de algumas informações.");
+                    System.out.println("Para realizar essa operação vamos precisar de algumas informações.\n");
                     String nome = Interface.pedirEntrada("Digite o nome do usuário:");
                     String email = Interface.pedirEntrada("Digite o email do usuário:");
                     String senha = Interface.pedirEntrada("Digite a senha do usuário:");
@@ -47,11 +47,11 @@ public class MainApplication {
                     } catch (EmailInvalidoException e) {
                         isMostrarMenu = Interface.lidarComErro(Usuario.isSenhaValida(senha) ? "O email digitado é inválido." : "O email e a senha são inválidos.");
                     } catch (SenhaInvalidaException e) {
-                        isMostrarMenu = Interface.lidarComErro("A senha digitada é inválida.");
+                        isMostrarMenu = Interface.lidarComErro("A senha digitada é inválida. A senha precisa consistir de no mínimo 8 caracteres, 2 números, um caractere especial, uma letra maiúscula e uma letra minúscula.");
                     }
                 }
                 case "2" -> {
-                    System.out.println("\nPara calcular as raízes de uma equação de segundo grau vamos precisar dos coeficientes.");
+                    System.out.println("\nPara calcular as raízes de uma equação de segundo grau vamos precisar dos coeficientes.\n");
                     try {
                         double a = Double.parseDouble(Interface.pedirEntrada("Digite o coeficiente a:"));
                         double b = Double.parseDouble(Interface.pedirEntrada("Digite o coeficiente b:"));
@@ -60,9 +60,9 @@ public class MainApplication {
 
                         if (raizes != null) {
                             System.out.println("\nA equação acima possui as seguintes raízes:");
-                            System.out.println(raizes);
+                            System.out.println(raizes + "\n");
                         } else {
-                            Interface.printAviso("\nSem raízes reais.");
+                            Interface.printAviso("\nSem raízes reais.\n");
                         }
                     }
                     catch (Exception e) {
@@ -76,13 +76,13 @@ public class MainApplication {
                         double angulo2 = Double.parseDouble(Interface.pedirEntrada("Ângulo 2:"));
                         double angulo3 = Double.parseDouble(Interface.pedirEntrada("Ângulo 3:"));
                         if (sistema.ehTriangulo(angulo1, angulo2, angulo3)) {
-                            Interface.printSucesso("\nÉ um triângulo.");
+                            Interface.printSucesso("\nÉ um triângulo.\n");
                         } else {
-                            Interface.printAviso("\nNão é um triângulo.");
+                            Interface.printAviso("\nNão é um triângulo.\n");
                         }
                     }
                     catch (Exception e) {
-                        isMostrarMenu = Interface.lidarComErro("Os valores dos ângulos digitados são inválidos.");
+                        isMostrarMenu = Interface.lidarComErro("Os valores dos ângulos do triângulo informados são inválidos. Tente valores numéricos maiores que zero.");
                     }
                 }
                 case "4" -> {
@@ -93,9 +93,9 @@ public class MainApplication {
                         double angulo2 = Double.parseDouble(Interface.pedirEntrada("Ângulo 2:"));
                         double angulo3 = Double.parseDouble(Interface.pedirEntrada("Ângulo 3:"));
 
-                        System.out.println("\n" + sistema.classificaTriangulo(angulo1, angulo2, angulo3) + ".");
+                        System.out.println("\n" + sistema.classificaTriangulo(angulo1, angulo2, angulo3) + ".\n");
                     } catch (Exception e) {
-                        isMostrarMenu = Interface.lidarComErro("Os valores dos ângulos digitados são inválidos.");
+                        isMostrarMenu = Interface.lidarComErro("Os valores dos ângulos do triângulo informados são inválidos. Tente valores numéricos maiores que zero.");
                     }
                 }
                 case "5" -> {
@@ -107,12 +107,12 @@ public class MainApplication {
                         double lado3 = Double.parseDouble(Interface.pedirEntrada("Lado 3:"));
 
                         if (sistema.ehTrianguloRetangulo(lado1, lado2, lado3)) {
-                            Interface.printSucesso("\nÉ um triângulo retângulo.");
+                            Interface.printSucesso("\nÉ um triângulo retângulo.\n");
                         } else {
-                            Interface.printAviso("\nNão é um triângulo retângulo.");
+                            Interface.printAviso("\nNão é um triângulo retângulo.\n");
                         }
                     } catch (Exception e) {
-                        isMostrarMenu = Interface.lidarComErro("Os valores dos lados digitados são inválidos.");
+                        isMostrarMenu = Interface.lidarComErro("Os valores dos lados do triângulo informados são inválidos. Tente valores numéricos maiores que zero.");
                     }
                 }
                 case "6" -> {
@@ -130,7 +130,7 @@ public class MainApplication {
                             Interface.printAviso("\nNão é retângulo.\n");
                         }
                     } catch (Exception e) {
-                        isMostrarMenu = Interface.lidarComErro("Os valores dos ângulos digitados são inválidos.");
+                        isMostrarMenu = Interface.lidarComErro("Os valores dos ângulos do retângulo informados são inválidos. Tente valores numéricos maiores que zero.");
                     }
                 }
                 case "7" -> {
@@ -138,7 +138,7 @@ public class MainApplication {
                     try {
                         double[] lados = new double[2];
                         for (int i = 0; i < 2; i++) {
-                            double lado = Double.parseDouble(Interface.pedirEntrada(String.format("Lado %d", i + 1)));
+                            double lado = Double.parseDouble(Interface.pedirEntrada(String.format("Lado %d:", i + 1)));
                             lados[i] = lado;
                         }
                         System.out.printf("\nA área do retângulo é: %.2f\n", sistema.areaRetangulo(lados[0], lados[1]));
@@ -184,7 +184,7 @@ public class MainApplication {
                         String[] ponto2 = p2.trim().split("\\s+");
                         double x2 = Double.parseDouble(ponto2[0]);
                         double y2 = Double.parseDouble(ponto2[1]);
-                        System.out.printf("\nA ditância entre os pontos é: %.2f\n\n", sistema.distanciaEntreDoisPontos(x1, y1, x2, y2));
+                        System.out.printf("\nA distância entre os pontos é: %.2f\n\n", sistema.distanciaEntreDoisPontos(x1, y1, x2, y2));
                     }
                     catch(ArrayIndexOutOfBoundsException | NumberFormatException e){
                         isMostrarMenu = Interface.lidarComErro("Coordenadas inválidas. Digite as coordenadas de cada ponto separado por espaço (Ex.: 0 3)");
